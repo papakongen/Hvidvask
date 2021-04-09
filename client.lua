@@ -9,29 +9,48 @@ vRP = Proxy.getInterface("vRP")
 vRPclient = Tunnel.getInterface("vRP","papa_hvidvask")
 
 Citizen.CreateThread(function()
-  while true do
-    Citizen.Wait(0)
-        if GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()), 707.55377197266,-1142.4399414063,23.495445251465, true ) < 35 then
-          DrawMarker(22,707.55377197266,-1142.4399414063,23.495445251465-0.2,0,0,0,0,0,Rotation,1.001,1.0001,0.5001,0,136,254,200,0,0,0,true)				
-            if GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()), 707.55377197266,-1142.4399414063,23.495445251465, true ) < 1 then 
-                DrawText3Ds(707.40795898438,-1142.3310546875,23.495164871216+0.15, "~c~[~b~E~c~] ~w~For at starte hvidvask (15000 sorte)", 3.0, 7)	
-                  if IsControlJustPressed(1, 38) then
+    while true do
+        inRange = false
+ 
+        local Player = GetPlayerPed(-1)
+        local Position = GetEntityCoords(Player)
+ 
+            local dist = GetDistanceBetweenCoords(Position, 707.55377197266,-1142.4399414063,23.495445251465)
+            
+            if dist < 2 then
+                inRange = true
+            
+                DrawText3D(707.55377197266,-1142.4399414063,23.495445251465, '~c~[~b~E~c~] ~w~For at starte hvidvask (15000 sorte)')
+                DrawMarker(22,707.55377197266,-1142.4399414063,23.495445251465-0.2,0,0,0,0,0,Rotation,1.001,1.0001,0.5001,0,136,254,200,0,0,0,true)			
+                if IsControlJustReleased(0, 38) then
                     TriggerServerEvent("papa_hvidvask:start2")
-                end
             end
         end
+ 
+        if not inRange then
+            Citizen.Wait(1000)
+        end
+ 
+        Citizen.Wait(5)
     end
 end)
 
 Citizen.CreateThread(function()
     while true do
-      Citizen.Wait(0)
-      if hvidvask then
-        if GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()), 485.27127075195,-916.42681884766,26.229595184326, true ) < 35 then
-            DrawMarker(22,485.27127075195,-916.42681884766,26.229595184326-0.2,0,0,0,0,0,Rotation,1.001,1.0001,0.5001,255,181,0,200,0,0,0,true)						
-            if GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()), 485.27127075195,-916.42681884766,26.229595184326, true ) < 1 then 
-                DrawText3Ds(485.27127075195,-916.42681884766,26.229595184326+0.15, "~c~[~b~E~c~] ~w~For at aflevere penge", 3.0, 7)
-                if IsControlJustPressed(1, 38) then
+        inRange = false
+ 
+        local Player = GetPlayerPed(-1)
+        local Position = GetEntityCoords(Player)
+ 
+            local dist = GetDistanceBetweenCoords(Position, 485.27127075195,-916.42681884766,26.229595184326)
+            
+            if dist < 2 then
+                inRange = true
+                if hvidvask then
+            
+                DrawText3D(485.27127075195,-916.42681884766,26.229595184326, '~c~[~b~E~c~] ~w~For at aflevere penge')
+                DrawMarker(22,485.27127075195,-916.42681884766,26.229595184326-0.2,0,0,0,0,0,Rotation,1.001,1.0001,0.5001,255,181,0,200,0,0,0,true)		
+                if IsControlJustReleased(0, 38) then
                     hvidvask = false
                     TriggerServerEvent("papa_hvidvask:sted2")
                     Wait(100)
@@ -39,19 +58,31 @@ Citizen.CreateThread(function()
                 end
             end
         end
+ 
+        if not inRange then
+            Citizen.Wait(1000)
+        end
+ 
+        Citizen.Wait(5)
     end
-  end
 end)
 
 Citizen.CreateThread(function()
     while true do
-      Citizen.Wait(0)
-      if hvidvask2 then
-        if GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()), 474.43212890625,-634.82861328125,25.648370742798, true ) < 35 then 
-            DrawMarker(22,474.43212890625,-634.82861328125,25.648370742798-0.2,0,0,0,0,0,Rotation,1.001,1.0001,0.5001,255,181,0,200,0,0,0,true)						
-            if GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()), 474.43212890625,-634.82861328125,25.648370742798, true ) < 1 then 
-                DrawText3Ds(474.43212890625,-634.82861328125,25.648370742798+0.15, "~c~[~b~E~c~] ~w~For at aflevere penge", 3.0, 7)
-                if IsControlJustPressed(1, 38) then
+        inRange = false
+ 
+        local Player = GetPlayerPed(-1)
+        local Position = GetEntityCoords(Player)
+ 
+            local dist = GetDistanceBetweenCoords(Position, 485.27127075195,-916.42681884766,26.229595184326)
+            
+            if dist < 2 then
+                inRange = true
+                if hvidvask2 then
+            
+                DrawText3D(485.27127075195,-916.42681884766,26.229595184326, '~c~[~b~E~c~] ~w~For at aflevere penge')
+                DrawMarker(22,485.27127075195,-916.42681884766,26.229595184326-0.2,0,0,0,0,0,Rotation,1.001,1.0001,0.5001,255,181,0,200,0,0,0,true)		
+                if IsControlJustReleased(0, 38) then
                     hvidvask2 = false
                     TriggerServerEvent("papa_hvidvask:sted2")
                     Wait(100)
@@ -59,8 +90,13 @@ Citizen.CreateThread(function()
                 end
             end
         end
+ 
+        if not inRange then
+            Citizen.Wait(1000)
+        end
+ 
+        Citizen.Wait(5)
     end
-  end
 end)
 
 RegisterNetEvent("papa_hvidvask:start")
@@ -86,13 +122,6 @@ AddEventHandler("papa_hvidvask:start", function()
     Citizen.Wait(100)
     exports['mythic_notify']:DoCustomHudText('inform', 'Følg koordinaterne og aflever pengene', 10000)
     Citizen.Wait(4000)
-end)
-
-RegisterNetEvent("papa_hvidvask:sted")
-AddEventHandler("papa_hvidvask:sted", function()
-    if IsControlJustPressed(1, 38) then
-        TriggerServerEvent("papa_hvidvask:sted2")
-    end
 end)
 
 function DrawText3Ds(x,y,z, text)
